@@ -4,6 +4,8 @@ Tutorial for RNNs in Tensorflow
 
 - 9 Sept. 2017
 - Tutorial Link: https://www.tensorflow.org/tutorials/recurrent
+- Tutorial Code:
+  https://github.com/tensorflow/models/tree/master/tutorials/rnn/ptb
 
 ## Introduction
 
@@ -102,5 +104,22 @@ class Lstm(object):
 
 ### Forward Pass
 
+```python
+# Config.
+vocab_size = 10000
+hidden_size = 200
+size = [vocab_size, hidden_size]
+num_layers = 2
 
+# Initialize model and initial state.
+model = Lstm(size, num_layers)
+initial_state = state = model.lstm.zero_state(batch_size, tf.float32)
+
+# Update step.
+for i in xrange(num_steps):
+  output, state = model.lstm(words[:, i], state)
+  ...
+
+final_state = state
+```
 
